@@ -10,7 +10,35 @@ export const getBodegas = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const bodegas = await Bodega.findAll();
+    // const bodegas = await Bodega.findAll();
+    const lang = req.query.lang || 'es';
+
+let descField;
+switch (lang) {
+  case 'en':
+    descField = 'bodega_description_en';
+    break;
+  case 'ru':
+    descField = 'bodega_description_ru';
+    break;
+  case 'es':
+  default:
+    descField = 'bodega_description';
+    break;
+}
+
+const bodegas = await Bodega.findAll({
+  attributes: [
+    'id_bodega',
+    'bodega_name',
+    [descField, 'description'], // Переименуем в универсальное имя
+    'latitud',
+    'longitud',
+    'image_url',
+    'direction'
+  ]
+});
+
 
     res.status(200).json(bodegas);
   } catch (error) {
@@ -23,18 +51,75 @@ export const getBodegas = async (req, res) => {
 };
 
 
+// export const getBodegaById = async (req, res) => {
+//   try {
+//     const errors = validationResult(req);
+
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+
+//     const { id } = req.params;
+
+//     // Ищем бодега по ID
+//     const bodega = await Bodega.findByPk(id);
+//     if (!bodega) {
+//       return res.status(404).json({
+//         code: -6,
+//         message: 'бодега не найдено'
+//       });
+//     }
+
+//     res.status(200).json({
+//       code: 1,
+//       message: 'Детали бодеги',
+//       data: bodega
+//     });
+//   } catch (error) {
+//     console.error('Error in getBodegaById:', error);
+//     res.status(500).json({
+//       code: -100,
+//       message: 'Ошибка при получении бодеги'
+//     });
+//   }
+// };
+
 export const getBodegaById = async (req, res) => {
   try {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     const { id } = req.params;
+    const lang = req.query.lang || 'es';
 
-    // Ищем бодега по ID
-    const bodega = await Bodega.findByPk(id);
+    let descField;
+    switch (lang) {
+      case 'en':
+        descField = 'bodega_description_en';
+        break;
+      case 'ru':
+        descField = 'bodega_description_ru';
+        break;
+      case 'es':
+      default:
+        descField = 'bodega_description';
+        break;
+    }
+
+    const bodega = await Bodega.findByPk(id, {
+      attributes: [
+        'id_bodega',
+        'bodega_name',
+        [descField, 'description'],
+        'latitud',
+        'longitud',
+        'image_url',
+        'direction'
+      ]
+    });
+
     if (!bodega) {
       return res.status(404).json({
         code: -6,
@@ -55,6 +140,8 @@ export const getBodegaById = async (req, res) => {
     });
   }
 };
+
+
 
 export const addBodega = async (req, res) => {
   // Примените middleware для загрузки файла

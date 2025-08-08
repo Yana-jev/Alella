@@ -14,7 +14,14 @@ const Bodega = sequelize.define('Bodega', {
   bodega_description: {
     type: DataTypes.STRING(500)  
   },
-
+  bodega_description_en: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  bodega_description_ru: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
   latitud: {
     type: DataTypes.STRING(30),
   },
