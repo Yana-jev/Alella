@@ -193,35 +193,36 @@ export const updateCartItemQuantity = async (req, res) => {
 
 export const mergeCart = async (req, res) => {
   try {
-    const userId = req.user.id_user; // берём из токена
-    const items = req.body.items; // массив [{ wineId, quantity }]
+    const userId = req.user.id_user;
+    const items = req.body.items;
 
     if (!items || !Array.isArray(items)) {
       return res.status(400).json({ message: 'Invalid items format' });
     }
 
-    // находим корзину пользователя
-    const cart = await Cart.findOne({ where: { user_id: userId } });
+    let cart = await Cart.findOne({ where: { userId } }); 
+    if (!cart) {
+      cart = await Cart.create({ userId });
+    }
 
     for (const item of items) {
       const [cartItem, created] = await CartItem.findOrCreate({
-        where: { cart_id: cart.id_cart, wine_id: item.wineId },
+        where: { cartId: cart.id_cart, wineId: item.wineId },
         defaults: { quantity: item.quantity }
       });
 
       if (!created) {
-
         cartItem.quantity += item.quantity;
         await cartItem.save();
       }
     }
 
-    const updatedCart = await CartItem.findAll({ where: { cart_id: cart.id_cart } });
-
-    res.status(200).json(updatedCart);
+    const updatedCartItems = await CartItem.findAll({ where: { cartId: cart.id_cart } });
+    res.status(200).json(updatedCartItems);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Error merging cart' });
   }
 };
+
 
