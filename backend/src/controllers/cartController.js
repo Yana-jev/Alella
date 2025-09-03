@@ -25,7 +25,7 @@ export const getCart = async (req, res) => {
     const cart = await Cart.findOne({ where: { userId } });
 
     if (!cart) {
-      return res.status(404).json({ message: "No se encontró el carrito para este usuario." });  // Упрощённое сообщение
+      return res.status(404).json({ message: "No se encontró el carrito para este usuario." });  
     }
 
     const items = await CartItem.findAll({
@@ -80,7 +80,7 @@ export const addItemToCart = async (req, res) => {
       await item.save();
     }
 
-    res.status(200).json(item);  // Возвращаем только информацию о товаре
+    res.status(200).json(item);  
   } catch (error) {
     console.error("Error en addItemToCart:", error);
     res.status(500).json({ message: "Error al añadir el producto al carrito." });
@@ -110,7 +110,7 @@ export const removeItemFromCart = async (req, res) => {
 
     await item.destroy();
 
-    res.status(200).json({ message: "Producto eliminado del carrito exitosamente." });  // Упрощённый ответ
+    res.status(200).json({ message: "Producto eliminado del carrito exitosamente." });  
   } catch (error) {
     console.error("Error en removeItemFromCart:", error);
     res.status(500).json({ message: "Error al eliminar el producto del carrito." });
@@ -189,3 +189,39 @@ export const updateCartItemQuantity = async (req, res) => {
     res.status(500).json({ message: "Error al actualizar la cantidad del producto." });
   }
 };
+
+
+export const mergeCart = async (req, res) => {
+  try {
+    const userId = req.user.id_user; // берём из токена
+    const items = req.body.items; // массив [{ wineId, quantity }]
+
+    if (!items || !Array.isArray(items)) {
+      return res.status(400).json({ message: 'Invalid items format' });
+    }
+
+    // находим корзину пользователя
+    const cart = await Cart.findOne({ where: { user_id: userId } });
+
+    for (const item of items) {
+      const [cartItem, created] = await CartItem.findOrCreate({
+        where: { cart_id: cart.id_cart, wine_id: item.wineId },
+        defaults: { quantity: item.quantity }
+      });
+
+      if (!created) {
+
+        cartItem.quantity += item.quantity;
+        await cartItem.save();
+      }
+    }
+
+    const updatedCart = await CartItem.findAll({ where: { cart_id: cart.id_cart } });
+
+    res.status(200).json(updatedCart);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error merging cart' });
+  }
+};
+

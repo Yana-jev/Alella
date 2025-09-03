@@ -11,6 +11,12 @@ const Event = sequelize.define('Event', {
   event_name: {
     type: DataTypes.STRING(50)  
   },
+    event_name_en: {
+    type: DataTypes.STRING(50)  
+  },
+    event_name_ru: {
+    type: DataTypes.STRING(50)  
+  },
   bodega_name: {
     type: DataTypes.STRING(100),
     allowNull: false
@@ -19,8 +25,16 @@ const Event = sequelize.define('Event', {
     type: DataTypes.DATE,
   },
   description: {
-    type: DataTypes.STRING(255),  
+    type: DataTypes.STRING(500),  
     defaultValue: '1' 
+  },
+    description_en: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  description_ru: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
   },
   image_url: {  
     type: DataTypes.STRING(255), 

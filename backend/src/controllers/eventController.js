@@ -2,23 +2,103 @@ import Event from '../models/eventModel.js';
 import { validationResult } from 'express-validator';
 import { uploadFileMiddleware } from '../middlewares/upload.js';
 
+// export const getEvents = async (req, res) => {
+//   try {
+//     const errors = validationResult(req);
+
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+
+//     const events = await Event.findAll();
+
+//     res.status(200).json(events);
+//   } catch (error) {
+//     console.error('Error in getEvents:', error); // Логируем ошибку
+//     res.status(500).json({
+//       code: -100,
+//       message: 'Ошибка при получении событий',
+//     });
+//   }
+// };
+
+
+// export const getEventById = async (req, res) => {
+//   try {
+//     const errors = validationResult(req);
+
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+
+//     const { id } = req.params;
+
+//     // Ищем событие по ID
+//     const event = await Event.findByPk(id);
+//     if (!event) {
+//       return res.status(404).json({
+//         code: -6,
+//         message: 'Событие не найдено'
+//       });
+//     }
+
+//     res.status(200).json({
+//       code: 1,
+//       message: 'Детали события',
+//       data: event
+//     });
+//   } catch (error) {
+//     console.error('Error in getEventById:', error);
+//     res.status(500).json({
+//       code: -100,
+//       message: 'Ошибка при получении события'
+//     });
+//   }
+// };
+
+
 export const getEvents = async (req, res) => {
   try {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const events = await Event.findAll();
+    const lang = req.query.lang || 'es';
+
+    let nameField, descField;
+    switch (lang) {
+      case 'en':
+        nameField = 'event_name_en';
+        descField = 'description_en';
+        break;
+      case 'ru':
+        nameField = 'event_name_ru';
+        descField = 'description_ru';
+        break;
+      case 'es':
+      default:
+        nameField = 'event_name';
+        descField = 'description';
+        break;
+    }
+
+    const events = await Event.findAll({
+      attributes: [
+        'id_event',
+        [nameField, 'event_name'],
+        'bodega_name',
+        'date',
+        [descField, 'description'],
+        'image_url'
+      ]
+    });
 
     res.status(200).json(events);
+
   } catch (error) {
-    console.error('Error in getEvents:', error); // Логируем ошибку
-    res.status(500).json({
-      code: -100,
-      message: 'Ошибка при получении событий',
-    });
+    console.error('Error in getEvents:', error);
+    res.status(500).json({ code: -100, message: 'Ошибка при получении событий' });
   }
 };
 
@@ -26,20 +106,43 @@ export const getEvents = async (req, res) => {
 export const getEventById = async (req, res) => {
   try {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     const { id } = req.params;
+    const lang = req.query.lang || 'es';
 
-    // Ищем событие по ID
-    const event = await Event.findByPk(id);
+    let nameField, descField;
+    switch (lang) {
+      case 'en':
+        nameField = 'event_name_en';
+        descField = 'description_en';
+        break;
+      case 'ru':
+        nameField = 'event_name_ru';
+        descField = 'description_ru';
+        break;
+      case 'es':
+      default:
+        nameField = 'event_name';
+        descField = 'description';
+        break;
+    }
+
+    const event = await Event.findByPk(id, {
+      attributes: [
+        'id_event',
+        [nameField, 'event_name'], // универсальное имя события
+        'bodega_name',
+        'date',
+        [descField, 'description'], // универсальное описание
+        'image_url'
+      ]
+    });
+
     if (!event) {
-      return res.status(404).json({
-        code: -6,
-        message: 'Событие не найдено'
-      });
+      return res.status(404).json({ code: -6, message: 'Событие не найдено' });
     }
 
     res.status(200).json({
@@ -47,12 +150,10 @@ export const getEventById = async (req, res) => {
       message: 'Детали события',
       data: event
     });
+
   } catch (error) {
     console.error('Error in getEventById:', error);
-    res.status(500).json({
-      code: -100,
-      message: 'Ошибка при получении события'
-    });
+    res.status(500).json({ code: -100, message: 'Ошибка при получении события' });
   }
 };
 
