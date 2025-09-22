@@ -145,16 +145,81 @@ export const filterWines = async (req, res) => {
 
 
 
+// export const getWines = async (req, res) => {
+//   try {
+//     const errors = validationResult(req);
+
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+
+//     const wines = await Wine.findAll();
+//     res.status(200).json(wines);
+//   } catch (error) {
+//     console.error("Error in getWines:", error);
+//     res.status(500).json({
+//       code: -100,
+//       message: "Error of getWines",
+//     });
+//   }
+// };
+
+// export const getWineById = async (req, res) => {
+//   try {
+//     const errors = validationResult(req);
+
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+
+//     const { id } = req.params;
+
+//     const wine = await Wine.findByPk(id);
+//     if (!wine) {
+//       return res.status(404).json({
+//         code: -6,
+//         message: "Wine not found",
+//       });
+//     }
+
+//     res.status(200).json({
+//       code: 1,
+//       message: "Product details",
+//       data: wine,
+//     });
+//   } catch (error) {
+//     console.error("Error in get product", error);
+//     res.status(500).json({
+//       code: -100,
+//       message: "Error in get product",
+//     });
+//   }
+// };
+
+
 export const getWines = async (req, res) => {
   try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+    const { lang } = req.query; // берём язык из query (?lang=en)
 
     const wines = await Wine.findAll();
-    res.status(200).json(wines);
+
+    // Маппим описание под текущий язык
+    const localizedWines = wines.map(wine => {
+      let description = wine.description; // дефолт: испанский
+
+      if (lang === 'en' && wine.wine_des_en) {
+        description = wine.wine_des_en;
+      } else if (lang === 'ru' && wine.wine_des_ru) {
+        description = wine.wine_des_ru;
+      }
+
+      return {
+        ...wine.toJSON(),
+        description, // заменяем description на нужный язык
+      };
+    });
+
+    res.status(200).json(localizedWines);
   } catch (error) {
     console.error("Error in getWines:", error);
     res.status(500).json({
@@ -166,13 +231,8 @@ export const getWines = async (req, res) => {
 
 export const getWineById = async (req, res) => {
   try {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
     const { id } = req.params;
+    const { lang } = req.query; // язык
 
     const wine = await Wine.findByPk(id);
     if (!wine) {
@@ -182,10 +242,20 @@ export const getWineById = async (req, res) => {
       });
     }
 
+    let description = wine.description;
+    if (lang === 'en' && wine.wine_des_en) {
+      description = wine.wine_des_en;
+    } else if (lang === 'ru' && wine.wine_des_ru) {
+      description = wine.wine_des_ru;
+    }
+
     res.status(200).json({
       code: 1,
       message: "Product details",
-      data: wine,
+      data: {
+        ...wine.toJSON(),
+        description, // отдаём локализованное описание
+      },
     });
   } catch (error) {
     console.error("Error in get product", error);
@@ -195,6 +265,7 @@ export const getWineById = async (req, res) => {
     });
   }
 };
+
 
 export const addWine = async (req, res) => {
   await uploadFileMiddleware(req, res);
@@ -229,6 +300,8 @@ export const addWine = async (req, res) => {
         sugar,
         image_url,
         description,
+        description_en,
+        description_ru,
         volumen,
       });
     } catch (error) {

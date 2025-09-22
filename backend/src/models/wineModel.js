@@ -52,9 +52,13 @@ const Wine = sequelize.define('Wine', {
   volumen: {
     type: DataTypes.STRING(10), 
   },
-
+  wine_des_en: {
+    type: DataTypes.STRING(1000),
+  },
+  wine_des_ru: {
+    type: DataTypes.STRING(1000),
+  },
 }, {
-  
   indexes: [{ unique: true, fields: ['wine_name'] }],  
   timestamps: true,
   updatedAt: 'updated_at',
