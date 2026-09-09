@@ -1,0 +1,81 @@
+<div class="flex items-center justify-center min-h-screen p-4">
+   <form class="login-form max-w-sm w-full" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div [routerLink]='["/home"]'><img src="assets/img/logo.png" alt="logo" class="mx-auto mb-5 cursor-pointer" width="100" /></div>
+      <h1 class="text-center text-3xl font-bold text-wine mb-5">Registration</h1>
+   
+      <div class="mb-5">
+         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+         <input formControlName="email" type="email" id="email" placeholder="Enter your email"
+         class="bg-white border border-wine-light text-gray-900 font-medium  text-sm rounded-lg focus:ring-wine focus:border-wine block w-full p-2.5" />
+         @if(form.get('email')?.touched && form.get('email')?.invalid){
+            <div class="text-red-500 font-medium text-sm mt-1">
+            Email is required.
+            </div>
+         }
+
+      </div>
+   
+
+   <div class="mb-5 relative">
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+      
+   <div class="relative">
+      <input 
+         formControlName="password" 
+         [type]="passwordVisible ? 'text' : 'password'" 
+         id="password" 
+         placeholder="Enter your password"
+         class="bg-white border border-wine-light text-gray-900 text-sm  font-medium rounded-lg focus:ring-wine focus:border-wine block w-full p-2.5 pr-10" />
+      
+   
+      <button 
+         type="button" 
+         (click)="togglePasswordVisibility()" 
+         class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 focus:outline-none">
+         <img 
+         [src]="passwordVisible ? 'assets/img/open-eye.png' : 'assets/img/eye.png'" 
+         alt="Toggle visibility" 
+         class="w-5 h-5" />
+      </button>
+   </div>
+   
+   @if(form.get('password')?.touched && form.get('email')?.invalid){
+      <div class="text-red-500 text-sm font-medium mt-1">
+      Password is required.
+      </div>
+   }
+   </div>
+
+   <div class="mb-5">
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
+      <input formControlName="confirmPassword" id="confirmPassword" type="password" placeholder="Enter your password"
+      class="bg-white border border-wine-light text-gray-900 text-sm font-medium rounded-lg focus:ring-wine focus:border-wine block w-full p-2.5" />
+
+      @if(form.get('password')?.touched && form.get('email')?.invalid){
+         <div class="text-red-500 text-sm font-medium mt-1">
+         Password is required.
+         </div>
+      }
+</div>
+
+      <button type="submit"
+         class="text-white bg-wine hover:bg-wine-dark focus:ring-4 focus:outline-none focus:ring-wine-light font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">
+         Register
+      </button>
+   
+      <div class="mt-5 text-center">
+         <span class="text-sm font-medium">Already have an account? </span>
+         <a routerLink="/login" class="text-wine font-bold underline login-link">Login</a>
+      </div>
+   </form>
+</div>
+@if(emailExistsError){
+
+   <div class="fixed top-5 right-5 bg-red-500 font-medium  text-white px-4 py-2 rounded shadow-lg z-50">
+      This email is already registered.
+      <button (click)="emailExistsError = false" class="ml-2 font-bold">×</button>
+   </div>
+}
+@if (form.errors?.['server']) {
+   <div  class="fixed top-5 right-5 bg-red-500 font-medium  text-white px-4 py-2 rounded shadow-lg z-50">{{ form.errors?.['server'] }}</div>
+}

@@ -1,0 +1,51 @@
+<nav class="navbar">
+<div class="container">
+  <div [routerLink]="['/home']">
+    <img src="assets/img/logo_header.png" class="logo" alt="logo" />
+  </div>
+
+  <!-- гамбургер -->
+  <button class="menu-toggle" type="button"
+    (click)="isMenuOpen = !isMenuOpen"
+    aria-controls="navbar-user"
+    [attr.aria-expanded]="isMenuOpen"
+    aria-label="Toggle navigation">
+    <span *ngIf="!isMenuOpen" class="menu-symbol" aria-hidden="true">☰</span>
+    <span *ngIf="isMenuOpen" class="menu-symbol" aria-hidden="true">✖</span>
+  </button>
+
+  <!-- меню -->
+  <div class="navbar-menu" [class.open]="isMenuOpen" id="navbar-user">
+    <ul class="navbar-links">
+      <li><a [routerLink]="['/home']" class="links" (click)="closeMenu()">{{ 'NAV.INICIO' | translate}}</a></li>
+      <li><a [routerLink]="['/events']" class="links" (click)="closeMenu()">{{ 'NAV.EVENTOS' | translate}}</a></li>
+      <li><a [routerLink]="['/bodegas']" class="links" (click)="closeMenu()">{{ 'NAV.BODEGAS' | translate}}</a></li>
+      <li><a [routerLink]="['/tienda']" class="links" (click)="closeMenu()">{{ 'NAV.TIENDA' | translate}}</a></li>
+      <li><a [routerLink]="['/quiiz']" class="wine-btn" (click)="closeMenu()">{{ 'NAV.ENCUENTRA TU VINO IDEAL' | translate}}</a></li>
+        <li> <select (change)="changeLanguage($any($event.target).value)" [value]="currentLang() " class="language-select">
+          <option value="en" >En</option>
+          <option value="es">Es</option>
+          <option value="ru">Ru</option>
+        </select>
+      </li>
+      <li *ngIf="!authService.isAuthenticated()">
+        <div class="auth-links">
+          <a href="/login" class="links" (click)="closeMenu()">{{ 'NAV.LOGIN' | translate}}</a>
+          <a href="/register" class="links" (click)="closeMenu()">{{ 'NAV.REGISTER' | translate}}</a>
+        </div>
+      </li>
+      <li *ngIf="authService.isAuthenticated()">
+        <a (click)="onLogout()" class="logout-link">{{ 'NAV.LOGOUT' | translate}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['/cart'] " (click)="closeMenu()" class="cart-link">
+          <i class="fas fa-shopping-cart"></i>
+          <span *ngIf="itemCount() > 0" class="cart-count">{{ itemCount() }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+
+<router-outlet></router-outlet>

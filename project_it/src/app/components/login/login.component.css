@@ -1,0 +1,115 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+.login-wrapper .login-form {
+  max-width: 400px;
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-wrapper .login-form .logo {
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  width: 100px;
+}
+.login-wrapper .login-form h1 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #6dab00;
+  margin-bottom: 1.5rem;
+}
+.login-wrapper .login-form .form-group {
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+.login-wrapper .login-form .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+.login-wrapper .login-form .form-group input {
+  width: 100%;
+  padding: 0.625rem;
+  font-size: 0.95rem;
+  border: 1px solid rgb(187.5614035088, 255, 69);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.login-wrapper .login-form .form-group input:focus {
+  border-color: #6dab00;
+  box-shadow: 0 0 0 2px rgba(109, 171, 0, 0.3);
+}
+.login-wrapper .login-form .form-group .error {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: red;
+}
+.login-wrapper .login-form .password-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.login-wrapper .login-form .password-container input {
+  width: 100%;
+  padding-right: 2.5rem;
+  box-sizing: border-box;
+}
+.login-wrapper .login-form .password-container .toggle-btn {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.login-wrapper .login-form .password-container .toggle-btn img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.login-wrapper .login-form button[type=submit] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  background-color: #6dab00;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+.login-wrapper .login-form button[type=submit]:hover {
+  background-color: rgb(76.4912280702, 120, 0);
+}
+.login-wrapper .login-form .register-link {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.login-wrapper .login-form .register-link a {
+  color: #6dab00;
+  font-weight: 700;
+  text-decoration: none;
+}
+.login-wrapper .login-form .register-link a:hover {
+  text-decoration: underline;
+}
+.login-wrapper .login-link {
+  color: #6dab00;
+}/*# sourceMappingURL=login.component.css.map */

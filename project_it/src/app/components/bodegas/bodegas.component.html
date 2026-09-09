@@ -1,0 +1,25 @@
+<div class="container">
+<section class="bodega-hero">
+<div class="bodega-wrapper">
+   <img src="assets/img/v4.jpg" alt="Vista de Alella" class="bodega-image" />
+   <div class="bodega-overlay"></div>
+   <div class="bodega-text">
+   <p> {{ "BODEGAS.HERO_TITLE" | translate }} </p>
+   </div>
+</div>
+</section>
+
+
+
+<div class="grid">
+   @for(bodega of bodegas; track $index){
+      <app-card-design
+      [imageUrl]="'/' + bodega.image_url"
+      [title]="bodega.bodega_name"
+      [subtitle]="bodega.direction"
+      (clicked)="goToBodegaDetail(bodega.id_bodega)">
+      </app-card-design>
+   }
+
+</div>
+</div>

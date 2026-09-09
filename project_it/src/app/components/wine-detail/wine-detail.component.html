@@ -1,0 +1,48 @@
+<div *ngIf="wine" class="wine-detail-container">
+  <div class="wine-detail-layout">
+
+    <div class="wine-image">
+      <img 
+        [src]="wine.image_url" 
+        [alt]="wine.wine_name"
+      />
+    </div>
+
+
+    <div class="wine-content">
+      <h1 class="wine-name">{{ wine.wine_name }}</h1>
+      <h2 class="wine-bodega">{{ "WINE.BODEGA" | translate }}: {{ wine.bodega_name }}</h2>
+
+      <p class="wine-description"><strong>{{ wine.description }}</strong></p>
+
+      <div class="wine-attributes">
+        <div class="wine-info-line" *ngIf="wine.year">
+          <span class="label">{{ "WINE.YEAR" | translate }}:</span>
+          <span class="value">{{ wine.year }}</span>
+        </div>
+        <div class="wine-info-line" *ngIf="wine.sugar">
+          <span class="label">{{ "WINE.AZUCAR" | translate }}:</span>
+          <span class="value">{{ wine.sugar }}</span>
+        </div>
+        <div class="wine-info-line" *ngIf="wine.variedad">
+          <span class="label">{{ "WINE.UVA" | translate }}:</span>
+          <span class="value">{{ wine.variedad }}</span>
+        </div>
+        <div class="wine-info-line" *ngIf="wine.volumen">
+          <span class="label">{{ "WINE.VOLUMEN" | translate }}:</span>
+          <span class="value">{{ wine.volumen }} ml</span>
+        </div>
+      </div>
+
+      <div class="wine-price">
+        {{ "WINE.PRECIO" | translate }}: {{ wine.price | currency:'EUR' }}
+      </div>
+
+      <div class="wine-actions">
+        <button (click)="addToCart(wine, 1)">
+          {{ "SHOP.ADD_TO_CART" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

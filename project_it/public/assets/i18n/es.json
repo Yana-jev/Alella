@@ -1,0 +1,129 @@
+{
+"NAV":{
+   "INICIO": "Inicio",
+   "VINOS": "Vinos",
+   "EVENTOS": "Eventos",
+   "BODEGAS": "Bodegas",
+   "TIENDA": "Tienda",
+   "ENCUENTRA TU VINO IDEAL": "Encuentra tu vino ideal",
+   "LOGIN": "Login",
+   "REGISTER": "Sign Up",
+   "LOGOUT": "Logout"
+},
+
+"HOME": {
+   "HERO_TITLE": "Bienvenidos a la DO Alella",
+   "HERO_DESC": "Descubre los mejores vinos y bodegas de la región",
+   "EVENTS_TITLE": "Próximos Eventos",
+   "MORE_INFO": "Más información",
+   "SHOW_ALL_EVENTS": "Mostrar todos los eventos",
+   "WINERIES_TITLE": "Nuestras Bodegas",
+   "SHOW_ALL_WINERIES": "Mostrar todas las bodegas",
+   "REVIEWS_TITLE": "Opiniones de Nuestros Clientes",
+   "REVIEW_1": "La experiencia en la bodega Alta Alella fue inolvidable. Los vinos son extraordinarios y el personal muy amable.",
+   "REVIEW_2": "Quim Batlle es una bodega increíble con vinos únicos. Definitivamente regresaré.",
+   "REVIEW_3": "Disfrutamos mucho el tour de cata en Alella Vinícola. Los paisajes y vinos son espectaculares."
+},
+"EVENTS":{
+   "HERO_TITLE": "Únete a nosotros",
+   "HERO_DESC": "Disfruta de experiencias únicas entre viñedos, eventos y buena compañía.",
+   "FECHA": "Fecha",
+   "FILTRAR": "Filtrar por fechas:",
+   "RESET_FILTERS": "Restablecer filtros"
+
+},
+"BODEGAS":{
+   "HERO_TITLE": "Descubre nuestras bodegas"
+},
+"FOO":{
+   "CONTACTOS": "Contactos",
+   "SW": "Síguenos",
+   "LINKS": "Enlaces útiles",
+   "DIRECTION": "Dirección: Calle Mayor, 123, Alella, España",
+   "DERECHOS": "© 2024 Alella D.O. Todos los derechos reservados"
+},
+
+"SHOP": {
+   "FILTERS": "Filtros",
+   "SEARCH_BY_NAME": "Buscar por nombre:",
+   "SEARCH_PLACEHOLDER": "Escriba el nombre...",
+   "PRODUCER": "Productor:",
+   "COLOR": "Color:",
+   "ALL": "Todos",
+   "RED": "Tinto",
+   "WHITE": "Blanco",
+   "ROSE": "Rosado",
+   "TYPE": "Tipo:",
+   "SPARKLING": "Espumoso",
+   "STILL": "Tranquilo",
+   "PRICE_TO": "Precio hasta:",
+   "SORT_BY_PRICE": "Ordenar por precio:",
+   "NO_ORDER": "Sin orden",
+   "LOW_TO_HIGH": "De menor a mayor",
+   "HIGH_TO_LOW": "De mayor a menor",
+   "ADD_TO_CART": "Añadir al carrito",
+   "CESTA": "Cesta",
+   "TOTAL": "Total",
+   "VACIO": "Tu carrito está vacío",
+   "POPUP": "Producto agregado exitosamente.",
+   "RESET_FILTERS": "Restablecer filtros"
+},
+"WINE":{
+   "BODEGA": "Bodega",
+   "MARIDAJE": "Maridaje",
+   "YEAR": "Año",
+   "AZUCAR": "Contenido de azúcar",
+   "UVA": "Tipo de uva",
+   "VOLUMEN": "Volumen",
+   "PRECIO": "Precio"
+},
+"QUIZ": {
+"Q1": {
+   "QUESTION": "¿Qué tipo de vino prefieres?",
+   "OPTIONS": {
+   "RED": "Tinto",
+   "WHITE": "Blanco",
+   "SPARKLING": "Espumoso"
+   }
+},
+"Q2": {
+   "QUESTION": "¿Con qué plato vas a acompañar el vino?",
+   "OPTIONS": {
+   "MEAT": "Carne",
+   "PASTA": "Pasta",
+   "APPETIZER": "Aperitivo",
+   "FISH_SEAFOOD": "Pescados y mariscos"
+   }
+},
+"Q3": {
+   "QUESTION": "¿Qué aromas te gustan?",
+   "OPTIONS": {
+   "WOOD": "Madera",
+   "SPICES": "Especias",
+   "RIPE_FRUITS": "Frutos maduros",
+   "FRUIT": "Frutas",
+   "FLORAL": "Floral",
+   "HERBS": "Hierbas",
+   "PASTRY": "Bollería"
+   }
+},
+"Q4": {
+   "QUESTION": "¿En qué rango de precio estás buscando el vino?",
+   "OPTIONS": {
+   "UNDER_15": "menos de 15€",
+   "FROM_15_TO_20": "15-20€",
+   "ABOVE_20": "más de 20€"
+   }
+},
+"BACK": "← Atrás",
+"RESULTS_TITLE": "Resultados",
+"ADD_TO_CART": "Añadir al carrito",
+"START_OVER": "Empezar de nuevo",
+"NO_RESULTS": "Tu vino ideal aún no está disponible. Por favor, inténtalo más tarde."
+}
+
+}
+
+
+
+

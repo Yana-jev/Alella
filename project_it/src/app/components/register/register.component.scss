@@ -1,0 +1,61 @@
+$violet: #553c9a;;
+$lightgreen: #A6B78B;
+
+
+
+html, body {
+height: 100%;
+margin: 0;
+}
+
+.min-h-screen {
+min-height: 100vh;
+}
+
+.flex {
+display: flex;
+}
+
+.items-center {
+align-items: center;
+}
+
+.justify-center {
+justify-content: center;
+}
+
+
+.text-wine {
+color: $violet; 
+}
+
+.bg-wine {
+background-color: $violet;
+}
+
+.bg-wine-dark {
+background-color: $violet;
+}
+
+.border-wine-light {
+border-color: $lightgreen; 
+}
+
+.focus\:ring-wine, .focus\:border-wine {
+--tw-ring-color: $violet; 
+}
+
+.text-red-500 {
+color: red; 
+}
+
+.mt-1 {
+margin-top: 0.25rem;
+}
+
+.mb-5 {
+margin-bottom: 1.25rem;
+}
+.login-link {
+   cursor: pointer;
+} 

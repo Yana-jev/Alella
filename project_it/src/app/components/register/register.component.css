@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.text-wine {
+  color: #553c9a;
+}
+
+.bg-wine {
+  background-color: #553c9a;
+}
+
+.bg-wine-dark {
+  background-color: #553c9a;
+}
+
+.border-wine-light {
+  border-color: #A6B78B;
+}
+
+.focus\:ring-wine, .focus\:border-wine {
+  --tw-ring-color: $violet;
+}
+
+.text-red-500 {
+  color: red;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.login-link {
+  cursor: pointer;
+}/*# sourceMappingURL=register.component.css.map */

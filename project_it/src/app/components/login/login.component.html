@@ -1,0 +1,42 @@
+<div class="login-wrapper">
+<form class="login-form font-medium" [formGroup]="form" (ngSubmit)="onSubmit()">
+   <div [routerLink]='["/home"]'>
+   <img class="logo" src="assets/img/logo2.png" alt="logo" />
+   </div>
+
+   <h1>Log in to the Winery</h1>
+
+   <div class="form-group">
+   <label for="email">Email</label>
+   <input formControlName="email" type="email" id="email" placeholder="Enter your email" />
+   @if(form.get('email')?.touched && form.get('email')?.invalid){
+      <div class="error">Email is required.</div>
+   }
+   </div>
+
+<div class="form-group password-wrapper">
+<label for="password">Password</label>
+<div class="password-container">
+<input 
+   formControlName="password"
+   [type]="passwordVisible ? 'text' : 'password'" 
+   id="password" 
+   placeholder="Enter your password" 
+/>
+<button type="button" (click)="togglePasswordVisibility()" class="toggle-btn">
+   <img [src]="passwordVisible ? 'assets/img/open-eye.png' : 'assets/img/eye.png'" alt="Toggle visibility"/>
+</button>
+</div>
+@if(form.get('password')?.touched && form.get('password')?.invalid){
+   <div class="error">Password is required.</div>
+}
+</div>
+
+   <button type="submit">Log In</button>
+
+   <div class="mt-5 text-center">
+   <span>Don't have an account? </span>
+   <a routerLink="/register" class="text-wine font-bold underline login-link">Create an account</a>
+   </div>
+</form>
+</div>

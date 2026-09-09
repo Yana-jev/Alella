@@ -1,0 +1,48 @@
+<div class="cart-container">
+<h2 class="cart-title">{{ "SHOP.CESTA" | translate }}</h2>
+
+<div *ngIf="cartItemsValue.length > 0" class="cart-list">
+   <div *ngFor="let item of cartItemsValue" class="cart-item">
+   <div class="cart-item-info">
+      <img [src]="item.imageUrl" alt="{{ item.wineName }}"
+            (click)="goToWineDetail(item.wineId)" />
+            
+      <h3>{{ item.wineName }}</h3>
+      <p class="item-price">{{ item.price | currency:'EUR' }}</p>
+   </div>
+
+
+   <div class="cart-item-quantity">
+      <button (click)="updateQuantity(item, item.quantity - 1)" class="quantity-btn">
+         <i class="fa fa-minus"></i>
+      </button>
+      <span>{{ item.quantity }}</span>
+      <button (click)="updateQuantity(item, item.quantity + 1)" class="quantity-btn">
+         <i class="fa fa-plus"></i>
+      </button>
+   </div>
+
+
+   <div class="cart-item-total">
+      <p>{{ calculateTotalPrice(item) | currency:'EUR' }}</p>
+   </div>
+
+
+   <div class="cart-item-remove">
+      <button (click)="removeItemFromCart(item)" class="remove-btn">
+         <i class="fa fa-times"></i>
+      </button>
+   </div>
+   </div>
+
+   <h2 class="cart-total">{{ "SHOP.TOTAL" | translate }} : {{ calculateTotalCost() | currency:'EUR' }}</h2>
+</div>
+
+<app-checkout [total]="calculateTotalCost()"></app-checkout>
+
+<div *ngIf="cartItemsValue.length === 0" class="empty-cart">
+   <p>{{ "SHOP.VACIO" | translate }}</p>
+</div>
+</div>
+
+

@@ -1,0 +1,193 @@
+@charset "UTF-8";
+.navbar {
+  width: 100%;
+  background: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.navbar .container {
+  margin: auto;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+}
+.navbar {
+  /* Логотип */
+}
+.navbar .logo {
+  height: 2.5rem;
+  width: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  margin-right: 5px;
+  transition: height 0.3s ease;
+  min-width: 114px;
+}
+@media (max-width: 862px) {
+  .navbar .logo {
+    height: 40px;
+  }
+}
+.navbar {
+  /* гамбургер */
+}
+.navbar .menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #000;
+}
+.navbar .menu-toggle .menu-symbol {
+  font-size: 2rem;
+  line-height: 1;
+}
+.navbar {
+  /* меню */
+}
+.navbar .navbar-menu {
+  display: flex;
+  margin-left: 5px;
+}
+.navbar .navbar-menu .navbar-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navbar .navbar-menu .navbar-links li {
+  display: flex;
+  align-items: center;
+}
+.navbar .navbar-menu .navbar-links a,
+.navbar .navbar-menu .navbar-links .links {
+  text-decoration: none;
+  color: #333;
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+  transition: color 0.4s ease, border-color 0.4s ease;
+  border-bottom: 2px solid transparent;
+}
+.navbar .navbar-menu .navbar-links a:hover,
+.navbar .navbar-menu .navbar-links .links:hover {
+  color: #6dab00;
+  border-bottom-color: #6dab00;
+}
+.navbar .navbar-menu .navbar-links .wine-btn {
+  white-space: nowrap;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  text-transform: uppercase;
+  color: white;
+  font-weight: 500;
+  background-color: #6dab00;
+  border: 2px solid #6dab00;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+.navbar .navbar-menu .navbar-links .wine-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 150%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%) rotate(-15deg);
+  transition: opacity 0.3s ease-in-out;
+}
+.navbar .navbar-menu .navbar-links .wine-btn:hover {
+  background-color: white;
+  color: #6dab00;
+  border-color: #6dab00;
+}
+.navbar .navbar-menu .navbar-links .wine-btn:hover::before {
+  opacity: 0.6;
+}
+.navbar .navbar-menu .navbar-links .language-select {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.navbar .navbar-menu .navbar-links .language-select:hover {
+  border-color: #6dab00;
+}
+.navbar .navbar-menu .navbar-links .auth-links {
+  display: flex;
+  gap: 1rem;
+}
+.navbar .navbar-menu .navbar-links .cart-link {
+  position: relative;
+  font-size: 1.2rem;
+  color: #333;
+}
+.navbar .navbar-menu .navbar-links .cart-link:hover {
+  color: #6dab00;
+}
+.navbar .navbar-menu .navbar-links .cart-link .cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #6dab00;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+}
+.navbar {
+  /* --- мобильная версия --- */
+}
+@media (max-width: 1024px) {
+  .navbar .menu-toggle {
+    display: block;
+  }
+  .navbar .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+  .navbar .navbar-menu.open {
+    display: flex;
+  }
+  .navbar .navbar-menu .navbar-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .navbar .navbar-menu .navbar-links a,
+  .navbar .navbar-menu .navbar-links .links,
+  .navbar .navbar-menu .navbar-links .wine-btn {
+    font-size: 1.2rem;
+    border-bottom: none !important;
+    transition: none;
+    color: #333;
+  }
+  .navbar .navbar-menu .navbar-links a:hover,
+  .navbar .navbar-menu .navbar-links .links:hover,
+  .navbar .navbar-menu .navbar-links .wine-btn:hover {
+    color: #333;
+  }
+  .navbar .navbar-menu .navbar-links .auth-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}/*# sourceMappingURL=header.component.css.map */

@@ -1,0 +1,242 @@
+@charset "UTF-8";
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5rem;
+}
+
+.hero {
+  position: relative;
+}
+.hero .hero-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.hero .hero-image-wrapper .hero-image {
+  width: 100%;
+  height: 50vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  filter: brightness(70%);
+  transition: transform 0.5s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hero .hero-image-wrapper:hover .hero-image {
+    transform: scale(1.05);
+  }
+}
+.hero .hero-image-wrapper .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+.hero .hero-image-wrapper .hero-text {
+  position: absolute;
+  bottom: 2rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+  color: white;
+}
+.hero .hero-image-wrapper .hero-text h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+.hero .hero-image-wrapper .hero-text p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+  .hero .hero-image-wrapper .hero-text {
+    bottom: 1.5rem;
+  }
+  .hero .hero-image-wrapper .hero-text h1 {
+    font-size: 1.75rem;
+  }
+  .hero .hero-image-wrapper .hero-text p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .hero .hero-image-wrapper .hero-text {
+    bottom: 1rem;
+  }
+  .hero .hero-image-wrapper .hero-text h1 {
+    font-size: 1.4rem;
+  }
+  .hero .hero-image-wrapper .hero-text p {
+    font-size: 0.9rem;
+  }
+}
+.section {
+  padding: 2rem 0;
+}
+.section .section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+.section .section-title h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #6dab00;
+  margin: 0;
+  white-space: nowrap;
+}
+.section .section-title .section-line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #6dab00;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 1.5rem 0;
+  }
+  .section .section-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .section .section-title h2 {
+    font-size: 1.5rem;
+  }
+}
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    gap: 1.25rem;
+  }
+}
+.card {
+  cursor: pointer;
+  background: white;
+  padding: 0;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card img {
+  width: 100%;
+  height: 11rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+.card h3,
+.card p,
+.card a {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 1rem 0 0.5rem;
+}
+.card {
+  /* Ограничиваем описание до 3-х строк */
+}
+.card p {
+  color: #000;
+  margin-bottom: 1rem;
+  font-weight: 350;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 3;
+  box-orient: vertical;
+}
+.card a {
+  color: #b1795d;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+.card a:hover {
+  color: #6dab00;
+}
+.card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+@media (max-width: 480px) {
+  .card h3 {
+    font-size: 1.2rem;
+  }
+  .card p {
+    font-size: 0.9rem;
+  }
+}
+.center {
+  text-align: right;
+  margin-top: 3rem;
+}
+.center .btn-primary {
+  display: inline-block;
+  font-size: clamp(0.65rem, 2.5vw, 0.9rem);
+  padding: clamp(0.3rem, 1.5vw, 0.75rem) clamp(0.6rem, 5vw, 2rem);
+  white-space: nowrap;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: transparent;
+  border: 2px solid #6dab00;
+  color: #6dab00;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.center .btn-primary:hover {
+  background-color: #6dab00;
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .center {
+    text-align: center;
+  }
+}
+.review .stars {
+  color: #f5c518;
+  font-size: 1.25rem;
+}/*# sourceMappingURL=home.component.css.map */
